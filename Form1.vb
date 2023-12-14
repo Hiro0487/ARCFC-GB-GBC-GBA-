@@ -10,8 +10,10 @@ Public Class Form1
 
     ' Browse button click event
     Private Sub BrowseButton_Click(sender As Object, e As EventArgs) Handles BrowseButton.Click
-        Dim inputFileDialog As New OpenFileDialog
-        inputFileDialog.Filter = "Cheat files (*.cht)|*.cht"
+        Dim inputFileDialog As New OpenFileDialog With {
+                .Title = "Select Cheat File",
+                .Filter = "Cheat Files (*.CHT)|*.CHT"
+                }
         If inputFileDialog.ShowDialog = DialogResult.OK Then
             inputFileTextBox.Text = inputFileDialog.FileName
             OutputFileLabel.Text = Path.ChangeExtension(inputFileDialog.FileName, ".cheats")

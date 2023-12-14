@@ -38,41 +38,44 @@ Partial Class Form1
         ' 
         ' BrowseButton
         ' 
-        BrowseButton.Location = New Point(12, 30)
+        BrowseButton.Location = New Point(12, 12)
         BrowseButton.Name = "BrowseButton"
-        BrowseButton.Size = New Size(263, 78)
+        BrowseButton.Size = New Size(141, 42)
         BrowseButton.TabIndex = 0
         BrowseButton.Text = "Browse"
         BrowseButton.UseVisualStyleBackColor = True
         ' 
         ' ExtractButton
         ' 
-        ExtractButton.Location = New Point(12, 114)
+        ExtractButton.Location = New Point(12, 60)
         ExtractButton.Name = "ExtractButton"
-        ExtractButton.Size = New Size(263, 78)
+        ExtractButton.Size = New Size(141, 42)
         ExtractButton.TabIndex = 1
         ExtractButton.Text = "Extract"
         ExtractButton.UseVisualStyleBackColor = True
         ' 
         ' CloseButton
         ' 
-        CloseButton.Location = New Point(12, 302)
+        CloseButton.Location = New Point(312, 191)
         CloseButton.Name = "CloseButton"
-        CloseButton.Size = New Size(263, 78)
+        CloseButton.Size = New Size(108, 35)
         CloseButton.TabIndex = 2
         CloseButton.Text = "CLOSE"
         CloseButton.UseVisualStyleBackColor = True
         ' 
         ' ProgressBar
         ' 
-        ProgressBar.Location = New Point(12, 219)
+        ProgressBar.ForeColor = SystemColors.HotTrack
+        ProgressBar.Location = New Point(12, 108)
         ProgressBar.Name = "ProgressBar"
-        ProgressBar.Size = New Size(263, 77)
+        ProgressBar.Size = New Size(410, 77)
+        ProgressBar.Step = 1
+        ProgressBar.Style = ProgressBarStyle.Continuous
         ProgressBar.TabIndex = 3
         ' 
         ' inputFileTextBox
         ' 
-        inputFileTextBox.Location = New Point(12, 1)
+        inputFileTextBox.Location = New Point(159, 23)
         inputFileTextBox.Multiline = True
         inputFileTextBox.Name = "inputFileTextBox"
         inputFileTextBox.ReadOnly = True
@@ -83,7 +86,7 @@ Partial Class Form1
         ' OutputFileLabel
         ' 
         OutputFileLabel.AutoSize = True
-        OutputFileLabel.Location = New Point(23, 198)
+        OutputFileLabel.Location = New Point(159, 74)
         OutputFileLabel.Name = "OutputFileLabel"
         OutputFileLabel.Size = New Size(90, 15)
         OutputFileLabel.TabIndex = 5
@@ -93,7 +96,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(287, 392)
+        ClientSize = New Size(432, 229)
         ControlBox = False
         Controls.Add(OutputFileLabel)
         Controls.Add(inputFileTextBox)
