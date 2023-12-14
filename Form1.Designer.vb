@@ -24,48 +24,93 @@ Partial Class Form1
     Private Sub InitializeComponent()
         OpenFileDialog = New OpenFileDialog()
         SaveFileDialog = New SaveFileDialog()
-        Button1 = New Button()
-        Button2 = New Button()
+        BrowseButton = New Button()
+        ExtractButton = New Button()
+        CloseButton = New Button()
+        ProgressBar = New ProgressBar()
+        inputFileTextBox = New TextBox()
+        OutputFileLabel = New Label()
         SuspendLayout()
         ' 
         ' OpenFileDialog
         ' 
         OpenFileDialog.FileName = "OpenFileDialog"
         ' 
-        ' Button1
+        ' BrowseButton
         ' 
-        Button1.Location = New Point(12, 12)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(263, 78)
-        Button1.TabIndex = 0
-        Button1.Text = "mBoy! to mGBA"
-        Button1.UseVisualStyleBackColor = True
+        BrowseButton.Location = New Point(12, 30)
+        BrowseButton.Name = "BrowseButton"
+        BrowseButton.Size = New Size(263, 78)
+        BrowseButton.TabIndex = 0
+        BrowseButton.Text = "Browse"
+        BrowseButton.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' ExtractButton
         ' 
-        Button2.Location = New Point(12, 96)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(263, 78)
-        Button2.TabIndex = 1
-        Button2.Text = "CLOSE"
-        Button2.UseVisualStyleBackColor = True
+        ExtractButton.Location = New Point(12, 114)
+        ExtractButton.Name = "ExtractButton"
+        ExtractButton.Size = New Size(263, 78)
+        ExtractButton.TabIndex = 1
+        ExtractButton.Text = "Extract"
+        ExtractButton.UseVisualStyleBackColor = True
+        ' 
+        ' CloseButton
+        ' 
+        CloseButton.Location = New Point(12, 302)
+        CloseButton.Name = "CloseButton"
+        CloseButton.Size = New Size(263, 78)
+        CloseButton.TabIndex = 2
+        CloseButton.Text = "CLOSE"
+        CloseButton.UseVisualStyleBackColor = True
+        ' 
+        ' ProgressBar
+        ' 
+        ProgressBar.Location = New Point(12, 219)
+        ProgressBar.Name = "ProgressBar"
+        ProgressBar.Size = New Size(263, 77)
+        ProgressBar.TabIndex = 3
+        ' 
+        ' inputFileTextBox
+        ' 
+        inputFileTextBox.Location = New Point(12, 1)
+        inputFileTextBox.Name = "inputFileTextBox"
+        inputFileTextBox.Size = New Size(263, 23)
+        inputFileTextBox.TabIndex = 4
+        ' 
+        ' OutputFileLabel
+        ' 
+        OutputFileLabel.AutoSize = True
+        OutputFileLabel.Location = New Point(23, 198)
+        OutputFileLabel.Name = "OutputFileLabel"
+        OutputFileLabel.Size = New Size(41, 15)
+        OutputFileLabel.TabIndex = 5
+        OutputFileLabel.Text = "Label1"
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(287, 199)
+        ClientSize = New Size(287, 392)
         ControlBox = False
-        Controls.Add(Button2)
-        Controls.Add(Button1)
+        Controls.Add(OutputFileLabel)
+        Controls.Add(inputFileTextBox)
+        Controls.Add(ProgressBar)
+        Controls.Add(CloseButton)
+        Controls.Add(ExtractButton)
+        Controls.Add(BrowseButton)
         Name = "Form1"
         Text = "mBoy! to mGBA Cheat File converter"
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents OpenFileDialog As OpenFileDialog
     Friend WithEvents SaveFileDialog As SaveFileDialog
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents BrowseButton As Button
+    Friend WithEvents ExtractButton As Button
+    Friend WithEvents CloseButton As Button
+    Friend WithEvents ProgressBar As ProgressBar
+    Friend WithEvents inputFileTextBox As TextBox
+    Friend WithEvents OutputFileLabel As Label
 
 End Class

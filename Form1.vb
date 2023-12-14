@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
+Imports System.Xml
 
 Public Class Form1
 
@@ -7,66 +8,54 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    ' Browse button click event
+    Private Sub BrowseButton_Click(sender As Object, e As EventArgs) Handles BrowseButton.Click
+        Dim inputFileDialog As New OpenFileDialog
+        inputFileDialog.Filter = "Cheat files (*.cht)|*.cht"
+        If inputFileDialog.ShowDialog = DialogResult.OK Then
+            inputFileTextBox.Text = inputFileDialog.FileName
+            OutputFileLabel.Text = Path.ChangeExtension(inputFileDialog.FileName, ".cheats")
+        End If
+    End Sub
+
+    ' Extract button click event
+    Private Sub ExtractButton_Click(sender As Object, e As EventArgs) Handles ExtractButton.Click
+        ProgressBar.Value = 0 ' Set progress bar to 0 (optional)
+        Dim inputFile As String = inputFileTextBox.Text
+        Dim outputFile As String = OutputFileLabel.Text
+
         Try
-            Dim openFileDialog As New OpenFileDialog()
-            With openFileDialog
-                .Title = "Select Cheat File"
-                .Filter = "Cheat Files (*.DCT)|*.DCT"
-                .InitialDirectory = "E:\Emulator's\DS\DeSmuMe\Cheats" ' Adjust path as needed
-            End With
+            Dim xmlDoc As New XmlDocument
+            xmlDoc.Load(inputFile)
+            Dim outputString As New StringBuilder
+            Dim cheatCount = xmlDoc.SelectNodes("//cheat").Count
 
-            If openFileDialog.ShowDialog() = DialogResult.OK Then
-                Dim filePath As String = openFileDialog.FileName
-                If File.Exists(filePath) Then
-                    Dim chtFileContent As String = File.ReadAllText(filePath)
+            For i As Integer = 1 To cheatCount
+                Dim cheatElement As XmlElement = xmlDoc.SelectNodes("//cheat")(i - 1)
+                Dim name As String = cheatElement.GetAttribute("name")
+                Dim code As String = cheatElement.InnerText
 
-                    ' Parse and modify cheat information
-                    Dim xmlDoc As New XDocument(chtFileContent)
-                    Dim modifiedCheats = From cheat1 In xmlDoc.Descendants("cheat")
-                                         Select New With
-                                             {
-                                                 .Name = "#" & cheat1.Attribute("name").Value,
-                                                 .Code = cheat1.Descendants("code").FirstOrDefault().Value("")
-                                             }
-                    Dim outputStream As New StreamWriter("modified_cheats.cheats")
-
-                    For Each modifiedCheat In modifiedCheats
-                        Dim codeLines As New StringBuilder()
-
-                        For Each line As String In modifiedCheat.Code.Split(Environment.NewLine)
-                            codeLines.Append(line & vbCrLf & vbCrLf)
-                        Next
-
-                        codeLines.Append(vbCrLf)
-                        outputStream.Write(modifiedCheat.Name & codeLines)
-                    Next
-
-                    outputStream.Close()
+                ' Prepend "#" before "name" data (modified line)
+                outputString.AppendLine("#" & name)
+                outputString.AppendLine(code)
+                outputString.AppendLine()
+            Next
 
 
-                    MsgBox("Successfully converted cheat file to modified_cheats.cheats!")
-                Else
-                    MsgBox("File not found!")
-                End If
-            Else
-                MsgBox("No file selected.")
-            End If
+            Dim outputStreamWriter As New StreamWriter(outputFile)
+            outputStreamWriter.Write(outputString.ToString)
+            outputStreamWriter.Close()
+
+            MessageBox.Show("Data extracted successfully to " & outputFile)
+            ProgressBar.Value = 100 ' Set progress bar to 100 (optional)
         Catch ex As Exception
-            MsgBox("Error processing the cht file: " & ex.Message)
-            ' Consider logging error details for further investigation
-        Finally
-            ' Close any open resources if needed
+            MessageBox.Show("Error extracting data: " & ex.Message)
         End Try
-
-
     End Sub
 
-
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
         Me.Close()
+        End
+
     End Sub
-
-
 End Class
