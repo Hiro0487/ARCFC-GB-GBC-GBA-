@@ -22,15 +22,15 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        OpenFileDialog1 = New OpenFileDialog()
-        SaveFileDialog1 = New SaveFileDialog()
+        OpenFileDialog = New OpenFileDialog()
+        SaveFileDialog = New SaveFileDialog()
         Button1 = New Button()
         Button2 = New Button()
         SuspendLayout()
         ' 
-        ' OpenFileDialog1
+        ' OpenFileDialog
         ' 
-        OpenFileDialog1.FileName = "OpenFileDialog1"
+        OpenFileDialog.FileName = "OpenFileDialog"
         ' 
         ' Button1
         ' 
@@ -38,7 +38,7 @@ Partial Class Form1
         Button1.Name = "Button1"
         Button1.Size = New Size(263, 78)
         Button1.TabIndex = 0
-        Button1.Text = "Button1"
+        Button1.Text = "mBoy! to mGBA"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Button2
@@ -47,7 +47,7 @@ Partial Class Form1
         Button2.Name = "Button2"
         Button2.Size = New Size(263, 78)
         Button2.TabIndex = 1
-        Button2.Text = "Button2"
+        Button2.Text = "CLOSE"
         Button2.UseVisualStyleBackColor = True
         ' 
         ' Form1
@@ -55,15 +55,16 @@ Partial Class Form1
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(287, 199)
+        ControlBox = False
         Controls.Add(Button2)
         Controls.Add(Button1)
         Name = "Form1"
-        Text = "Form1"
+        Text = "mBoy! to mGBA Cheat File converter"
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents OpenFileDialog As OpenFileDialog
+    Friend WithEvents SaveFileDialog As SaveFileDialog
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
 
