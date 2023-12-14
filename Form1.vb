@@ -33,8 +33,8 @@ Public Class Form1
             For i As Integer = 1 To cheatCount
                 Dim cheatElement As XmlElement = xmlDoc.SelectNodes("//cheat")(i - 1)
                 Dim name As String = cheatElement.GetAttribute("name")
-
                 Dim codeBlock As New StringWriter
+                ProgressBar.Value = (i / cheatCount) * 100
                 For Each childNode In cheatElement.ChildNodes
                     If childNode.NodeType = XmlNodeType.Element Then
                         codeBlock.Write(childNode.innerXml & Environment.NewLine)
@@ -46,18 +46,19 @@ Public Class Form1
 
                 Dim codeString As String = codeBlock.ToString()
 
+                outputString.AppendLine("!disabled")
                 outputString.AppendLine("#" & name)
                 outputString.AppendLine(codeString)
-                outputString.AppendLine()
+                'outputString.AppendLine()
             Next i
 
-
+            MsgBox("Cheats are automatiacllay disabled upon conversion", vbExclamation, "Cheats are disabled when converted")
             Dim outputStreamWriter As New StreamWriter(outputFile)
             outputStreamWriter.Write(outputString.ToString)
             outputStreamWriter.Close()
 
             MessageBox.Show("Data extracted successfully to " & outputFile)
-            ProgressBar.Value = 100 ' Set progress bar to 100 (optional)
+            ' ProgressBar.Value = 100 ' Set progress bar to 100 (optional)
         Catch ex As Exception
             MessageBox.Show("Error extracting data: " & ex.Message)
         End Try

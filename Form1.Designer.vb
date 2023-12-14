@@ -73,18 +73,21 @@ Partial Class Form1
         ' inputFileTextBox
         ' 
         inputFileTextBox.Location = New Point(12, 1)
+        inputFileTextBox.Multiline = True
         inputFileTextBox.Name = "inputFileTextBox"
+        inputFileTextBox.ReadOnly = True
         inputFileTextBox.Size = New Size(263, 23)
         inputFileTextBox.TabIndex = 4
+        inputFileTextBox.Text = "Source Directory"
         ' 
         ' OutputFileLabel
         ' 
         OutputFileLabel.AutoSize = True
         OutputFileLabel.Location = New Point(23, 198)
         OutputFileLabel.Name = "OutputFileLabel"
-        OutputFileLabel.Size = New Size(41, 15)
+        OutputFileLabel.Size = New Size(90, 15)
         OutputFileLabel.TabIndex = 5
-        OutputFileLabel.Text = "Label1"
+        OutputFileLabel.Text = "Target Directory"
         ' 
         ' Form1
         ' 
