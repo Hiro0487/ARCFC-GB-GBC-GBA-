@@ -33,13 +33,23 @@ Public Class Form1
             For i As Integer = 1 To cheatCount
                 Dim cheatElement As XmlElement = xmlDoc.SelectNodes("//cheat")(i - 1)
                 Dim name As String = cheatElement.GetAttribute("name")
-                Dim code As String = cheatElement.InnerText
 
-                ' Prepend "#" before "name" data (modified line)
+                Dim codeBlock As New StringWriter
+                For Each childNode In cheatElement.ChildNodes
+                    If childNode.NodeType = XmlNodeType.Element Then
+                        codeBlock.Write(childNode.innerXml & Environment.NewLine)
+                    ElseIf childNode.NodeType = XmlNodeType.Text Then
+                        Dim textContent As String = childNode.InnerText
+                        codeBlock.Write(Mid(textContent, 2, textContent.Length - 2)) ' Extract excluding tags
+                    End If
+                Next
+
+                Dim codeString As String = codeBlock.ToString()
+
                 outputString.AppendLine("#" & name)
-                outputString.AppendLine(code)
+                outputString.AppendLine(codeString)
                 outputString.AppendLine()
-            Next
+            Next i
 
 
             Dim outputStreamWriter As New StreamWriter(outputFile)
