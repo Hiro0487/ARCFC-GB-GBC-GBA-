@@ -11,9 +11,9 @@ Public Class Form1
     ' Browse button click event
     Private Sub BrowseButton_Click(sender As Object, e As EventArgs) Handles BrowseButton.Click
         Dim inputFileDialog As New OpenFileDialog With {
-                .Title = "Select Cheat File",
-                .Filter = "Cheat Files (*.CHT)|*.CHT"
-                }
+            .Title = "Select Cheat File",
+            .Filter = "Cheat Files (*.CHT)|*.CHT"
+        }
         If inputFileDialog.ShowDialog = DialogResult.OK Then
             inputFileTextBox.Text = inputFileDialog.FileName
             OutputFileLabel.Text = Path.ChangeExtension(inputFileDialog.FileName, ".cheats")
@@ -22,9 +22,21 @@ Public Class Form1
 
     ' Extract button click event
     Private Sub ExtractButton_Click(sender As Object, e As EventArgs) Handles ExtractButton.Click
-        ProgressBar.Value = 0 ' Set progress bar to 0 (optional)
+        ProgressBar.Value = 0 ' Set progress bar to 0
+
         Dim inputFile As String = inputFileTextBox.Text
-        Dim outputFile As String = OutputFileLabel.Text
+        Dim outputFile As String
+
+        Dim saveFileDialog As New SaveFileDialog With {
+            .Title = "Save Extracted Code",
+            .Filter = "Cheat Files (*.cheats)|*.cheats"
+        }
+        If saveFileDialog.ShowDialog = DialogResult.OK Then
+            outputFile = saveFileDialog.FileName
+        Else
+            MsgBox("Please choose a file to save the extracted code.", vbInformation, "Save Location Required")
+            Exit Sub
+        End If
 
         Try
             Dim xmlDoc As New XmlDocument
@@ -36,13 +48,15 @@ Public Class Form1
                 Dim cheatElement As XmlElement = xmlDoc.SelectNodes("//cheat")(i - 1)
                 Dim name As String = cheatElement.GetAttribute("name")
                 Dim codeBlock As New StringWriter
+
                 ProgressBar.Value = (i / cheatCount) * 100
+
                 For Each childNode In cheatElement.ChildNodes
                     If childNode.NodeType = XmlNodeType.Element Then
-                        codeBlock.Write(childNode.innerXml & Environment.NewLine)
+                        codeBlock.Write(childNode.InnerText & Environment.NewLine)
                     ElseIf childNode.NodeType = XmlNodeType.Text Then
                         Dim textContent As String = childNode.InnerText
-                        codeBlock.Write(Mid(textContent, 2, textContent.Length - 2)) ' Extract excluding tags
+                        codeBlock.Write(Mid(textContent, 2, textContent.Length - 2) & Environment.NewLine) ' Extract excluding tags
                     End If
                 Next
 
@@ -54,17 +68,20 @@ Public Class Form1
                 'outputString.AppendLine()
             Next i
 
-            MsgBox("Cheats are automatiacllay disabled upon conversion", vbExclamation, "Cheats are disabled when converted")
             Dim outputStreamWriter As New StreamWriter(outputFile)
             outputStreamWriter.Write(outputString.ToString)
             outputStreamWriter.Close()
 
-            MessageBox.Show("Data extracted successfully to " & outputFile)
-            ' ProgressBar.Value = 100 ' Set progress bar to 100 (optional)
+            MsgBox("Data extracted successfully to " & outputFile, vbInformation, "Extraction Complete")
         Catch ex As Exception
-            MessageBox.Show("Error extracting data: " & ex.Message)
+            MsgBox("Error extracting data: " & ex.Message, vbExclamation, "Extraction Error")
         End Try
+
+        ProgressBar.Value = 100 ' Set progress bar to 0 (optional)
     End Sub
+
+
+
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
         Me.Close()
