@@ -80,9 +80,6 @@ Public Class Form1
         ProgressBar.Value = 100 ' Set progress bar to 0 (optional)
     End Sub
 
-
-
-
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
         Me.Close()
         End
