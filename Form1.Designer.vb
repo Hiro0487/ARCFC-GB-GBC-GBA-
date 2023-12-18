@@ -44,7 +44,7 @@ Partial Class Form1
         ' PictureBox1
         ' 
         PictureBox1.BackColor = Color.Transparent
-        PictureBox1.BackgroundImage = My.Resources.Resources.Hiro0487_s_mBoy__to_mGBA_Marker
+        PictureBox1.BackgroundImage = My.Resources.Resources.Hiro0487_s_mBoy__to_mGBA_Marker1
         PictureBox1.BackgroundImageLayout = ImageLayout.Stretch
         PictureBox1.Location = New Point(10, 223)
         PictureBox1.Margin = New Padding(5)
