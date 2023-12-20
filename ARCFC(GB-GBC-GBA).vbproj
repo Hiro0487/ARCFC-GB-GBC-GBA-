@@ -4,9 +4,10 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>ARCFC_GB_GBC_GBA_</RootNamespace>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>ARCFC_GB_GBC_GBA_.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <ApplicationIcon>mBoy! to mGBA Cheat Converte Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
