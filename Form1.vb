@@ -85,4 +85,8 @@ Public Class Form1
         End
 
     End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Process.Start("C:\Program Files\Google\Chrome\Application\chrome.exe", "https://hiroscheatfileconverter.net/")
+    End Sub
 End Class
