@@ -166,7 +166,7 @@ Partial Class Form1
         ControlBox = False
         Controls.Add(GroupBox1)
         DoubleBuffered = True
-        Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(5)
         Name = "Form1"
