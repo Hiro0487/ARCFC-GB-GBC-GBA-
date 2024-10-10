@@ -22,10 +22,12 @@ Partial Class StartUpForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Button1 = New Button()
         Label1 = New Label()
         Button2 = New Button()
         Button3 = New Button()
+        ToolTip1 = New ToolTip(components)
         SuspendLayout()
         ' 
         ' Button1
@@ -53,6 +55,7 @@ Partial Class StartUpForm
         Button2.Size = New Size(153, 70)
         Button2.TabIndex = 2
         Button2.Text = "mGBA to mBoy!"
+        ToolTip1.SetToolTip(Button2, "Unsupported Feature" & vbCrLf & "Will be available" & vbCrLf & "Eventually")
         Button2.UseVisualStyleBackColor = True
         ' 
         ' Button3
@@ -84,4 +87,5 @@ Partial Class StartUpForm
     Friend WithEvents Label1 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
